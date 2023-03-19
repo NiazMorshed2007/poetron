@@ -2,10 +2,13 @@ import {Lora} from "@next/font/google";
 import Link from "next/link";
 import {motion} from "framer-motion";
 import Layout from "@/layout/Layout";
+import {useState, useEffect} from "react";
 
 const lora = Lora({subsets: ['latin']});
 
 export default function Home() {
+
+    const [stars, setStars] = useState(0);
 
     const initial_nav_left = {
         opacity: 0,
@@ -20,7 +23,18 @@ export default function Home() {
     }
     const duration = .25
 
-    return <Layout>
+
+    useEffect(() => {
+        fetch("https://api.github.com/repos/NiazMorshed2007/poetron")
+            .then(res => res.json())
+            .then(data => {
+                setStars(data.stargazers_count)
+            })
+
+    },[])
+
+
+    return <Layout stars={stars}>
 
         <section className="hero overflow-hidden w-screen flex-col h-screen flex items-center justify-center relative">
 
@@ -63,12 +77,16 @@ export default function Home() {
                         to Playground
                     </motion.button>
                 </Link>
-                <motion.button initial={initial_nav_left} animate={anim_nav_left} transition={{duration, delay: .4}}
-                               className={"border md:p-3 md:px-6 p-2 md:text-base text-sm border-dashed border-black rounded-full px-3 text-sm"}>Star
-                    on
-                    Github
-                </motion.button>
+                <a rel="stylesheet" href="https://github.com/NiazMorshed2007/poetron" target={"_blank"}>
+                    <motion.button initial={initial_nav_left} animate={anim_nav_left} transition={{duration, delay: .4}}
+                                   className={"border md:p-3 md:px-6 p-2 md:text-base text-sm border-dashed border-black rounded-full px-3 text-sm"}>Star
+                        on
+                        Github ({stars})
+                    </motion.button>
+                </a>
             </div>
+
+            <p className={"absolute bottom-2 -translate-x-1/2 left-1/2"}>Created with ❤️ by <a href={"github.com/NiazMorshe2007"} target={"_blank"}>Niaz Morshed</a></p>
         </section>
 
 

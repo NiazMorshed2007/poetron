@@ -4,14 +4,6 @@ import CheckApiModal from "@/components/CheckApiModal";
 import {AiOutlineReload} from "react-icons/ai";
 
 
-// initial steps to publish code to a existing repo
-// 1. git init
-// 2. git add .
-// 3. git commit -m "first commit"
-// 4. git branch -M main
-// 5. git remote add origin
-// 6. git push -u origin main
-
 
 const Playground = () => {
 

@@ -1,10 +1,14 @@
 import {motion} from "framer-motion";
 import Link from "next/link";
 import {Lora} from "@next/font/google";
+import {BsGithub} from "react-icons/bs";
+import {useEffect, useState} from "react";
 
 const lora = Lora({subsets: ['latin']});
 
-const Layout = ({children}) => {
+
+const Layout = ({children, stars}) => {
+
 
     return <main className={`${lora.className}`}>
 
@@ -14,9 +18,12 @@ const Layout = ({children}) => {
                 <Link className={"md:text-base text-sm"} href={"/playground"}>
                     Playground
                 </Link>
-                <button className={"border md:p-3 md:px-6 p-2 md:text-base text-xs border-dashed border-black p-3 rounded-full px-6 text-sm"}>Star on
-                    Github
-                </button>
+                <a rel="stylesheet" href="https://github.com/NiazMorshed2007/poetron" target={"_blank"}>
+                    <button
+                        className={"border flex items-center gap-5 md:p-3 md:px-6 p-2 md:text-base text-xs border-dashed border-black p-3 rounded-full px-6 text-sm"}>
+                        <BsGithub className={"text-2xl"} /> {stars} Stars
+                    </button>
+                    </a>
             </nav>
         </header>
 
