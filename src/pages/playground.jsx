@@ -2,11 +2,13 @@ import Layout from "@/layout/Layout";
 import {useEffect, useState} from "react";
 import CheckApiModal from "@/components/CheckApiModal";
 import {AiOutlineReload} from "react-icons/ai";
+import Head from "next/head";
 
 
 
 const Playground = () => {
 
+    const [stars, setStars] = useState(0);
     const [poemDescription, setPoemDescription] = useState("");
     const [hasApiKey, setHasApiKey] = useState(false);
     const [tone, setTone] = useState("");
@@ -51,9 +53,19 @@ const Playground = () => {
         if (apiKey) {
             setHasApiKey(true);
         }
+
+        fetch("https://api.github.com/repos/NiazMorshed2007/poetron")
+            .then(res => res.json())
+            .then(data => {
+                setStars(data.stargazers_count)
+            })
+
     }, [])
 
-    return <Layout>
+    return <Layout stars={stars}>
+        <Head>
+            <title>Poetron Playground</title>
+        </Head>
         <div className="flex flex-col items-center justify-center pt-48 pb-20 min-h-screen">
             {!hasApiKey ?
                 <CheckApiModal setHasApiKey={setHasApiKey}/>

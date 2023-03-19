@@ -3,6 +3,7 @@ import Link from "next/link";
 import {motion} from "framer-motion";
 import Layout from "@/layout/Layout";
 import {useState, useEffect} from "react";
+import Head from "next/head";
 
 const lora = Lora({subsets: ['latin']});
 
@@ -35,7 +36,9 @@ export default function Home() {
 
 
     return <Layout stars={stars}>
-
+        <Head>
+            <title>Poetron | Verse creativity</title>
+        </Head>
         <section className="hero overflow-hidden w-screen flex-col h-screen flex items-center justify-center relative">
 
             <motion.img initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 1}}
